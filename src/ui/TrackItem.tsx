@@ -1,27 +1,5 @@
 import type {FC} from "react";
-
-interface TrackAttachment {
-  id: string;
-  addedAt: string;
-  updatedAt: string;
-  version: number;
-  url: string;
-  contentType: string;
-  originalName: string;
-  fileSize: number;
-}
-
-interface TrackListItemAttributes {
-  title: string;
-  attachments: Array<TrackAttachment>
-}
-
-export interface TrackListItemResource {
-  id: string;
-  type: string;
-  attributes: TrackListItemAttributes;
-}
-
+import type {TrackListItemResource} from "../dal/schema";
 
 interface TrackItemProps {
   track: TrackListItemResource;

@@ -1,5 +1,5 @@
 import './App.css';
-import {MainPage} from "./components/MainPage.tsx";
+import {MainPage} from "./ui/MainPage.tsx";
 
 // https://musicfun.it-incubator.app/api
 // TODO: Пройти 22 урок

@@ -1,7 +1,9 @@
+import type {TrackDetailsResource, TrackListItemResource} from "./schema.ts";
+
 const API_KEY = 'a1b49d3b-662e-4426-a2ef-af15ed40e036';
 const BASE_URL = 'https://musicfun.it-incubator.app/api/1.0';
 
-const baseFetch = async (url?: string) => {
+const baseFetch = async <T>(url?: string) => {
   try {
     const response = await fetch(`${BASE_URL}/${url}`, {
       headers: {
@@ -15,12 +17,11 @@ const baseFetch = async (url?: string) => {
     }
 
     const parsedResponse = await response.json();
-    const data = parsedResponse.data;
 
     return {
       isError: false,
       message: '',
-      data
+      data: parsedResponse.data as T,
     }
   } catch (err: any) {
     return {
@@ -29,10 +30,9 @@ const baseFetch = async (url?: string) => {
       data: null,
     }
   }
-
 };
 
 export const api = {
-  getAllTracks: () => baseFetch('playlists/tracks'),
-  getTrackInfo: async (trackId: string) => await baseFetch(`playlists/tracks/${trackId}`),
+  getAllTracks: () => baseFetch<TrackListItemResource[]>('playlists/tracks'),
+  getTrackInfo: (trackId: string) => baseFetch<TrackDetailsResource>(`playlists/tracks/${trackId}`),
 };

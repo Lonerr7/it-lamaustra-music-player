@@ -1,7 +1,7 @@
 import {type FC, useEffect, useState} from "react";
-import {api} from "../api/api.ts";
+import {api} from "../dal/api";
 import {TrackItem} from "./TrackItem.tsx";
-import {type TrackListItemResource} from './TrackItem.tsx';
+import {type TrackListItemResource} from '../dal/schema';
 
 interface TracksListProps {
   selectedTrackId: string | null;
@@ -15,7 +15,7 @@ export const TracksList: FC<TracksListProps> = ({selectedTrackId, onTrackSelect}
     (async () => {
       const response = await api.getAllTracks();
 
-      if (response.isError) {
+      if (response.isError && !response.data) {
         setTracks(false);
         return;
       }

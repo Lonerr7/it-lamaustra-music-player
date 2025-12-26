@@ -1,16 +1,6 @@
 import {type FC, useEffect, useState} from "react";
-import {api} from "../api/api.ts";
-
-interface TrackDetailAttributes {
-  title: string;
-  lyrics: string | null;
-}
-
-interface TrackDetailsResource {
-  id: string;
-  type: string;
-  attributes: TrackDetailAttributes;
-}
+import {api} from "../dal/api";
+import {type TrackDetailsResource} from '../dal/schema';
 
 interface TrackDetailProps {
   trackId: string | null;
